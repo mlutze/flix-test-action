@@ -1,17 +1,18 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Flix Test'
+description: 'Perform Flix unit tests and benchmark tests'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  flix-version:
+    description: 'Version of Flix to use'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  test-dir:
+    description: 'Directory containing Flix test files.'
+    required: true
+    default: './test/'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.flix-version }}
+    - ${{ inputs.test-dir }}
 
