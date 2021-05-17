@@ -1,9 +1,12 @@
 {
   "name": "flix-test-action",
-  "version": "1.0.0",
+  "version": "0.2.3",
   "description": "Github action for running flix tests",
   "main": "main.js",
-  "dependencies": {},
+  "dependencies": {
+    "@actions/core": "^1.2.7",
+    "@actions/github": "^5.0.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
