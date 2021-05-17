@@ -6082,12 +6082,12 @@ function handle(f) {
 
 function getReleaseJar(versionString) {
   let url = util.format(release_format, versionString);
-  return http.request(url);
+  return https.request(url);
 }
 
 function getNightlyJar(dateString) {
   let url = util.format(nightly_format, dateString);
-  return http.request(url);
+  return https.request(url);
 }
 
 function getJar() {
