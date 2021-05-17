@@ -67,8 +67,4 @@ function main() {
   jar.on('finish', runTests)
 }
 
-try {
-  main()
-} catch (error) {
-  core.setFailed(error.message);
-}
+handle(main)
