@@ -6068,6 +6068,7 @@ const github = __nccwpck_require__(16);
 const https = __nccwpck_require__(211);
 const util = __nccwpck_require__(669);
 const child_process = __nccwpck_require__(129);
+const fs = __nccwpck_require__(747);
 
 const nightly_format = 'https://flix.dev/nightly/flix-%s.jar'
 const release_format = 'https://github.com/flix/flix/releases/download/%s/flix.jar'
@@ -6080,16 +6081,20 @@ function handle(f) {
   }
 }
 
+function downloadToFile(remote, local) {
+  console.log(`Downloading ${remote} to ${local}`)
+  const file = fs.createWriteStream(local);
+  return http.get(remote, response => response.pipe(file));
+}
+
 function getReleaseJar(versionString) {
   let url = util.format(release_format, versionString);
-  console.log(`Requesting ${url}...`)
-  return https.get(url);
+  return downloadToFile(url, "flix.jar")
 }
 
 function getNightlyJar(dateString) {
   let url = util.format(nightly_format, dateString);
-  console.log(`Requesting ${url}...`)
-  return https.get(url);
+  return downloadToFile(url, "flix.jar")
 }
 
 function getJar() {

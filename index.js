@@ -3,6 +3,7 @@ const github = require('@actions/github');
 const https = require('https');
 const util = require('util');
 const child_process = require('child_process');
+const fs = require('fs');
 
 const nightly_format = 'https://flix.dev/nightly/flix-%s.jar'
 const release_format = 'https://github.com/flix/flix/releases/download/%s/flix.jar'
@@ -15,16 +16,20 @@ function handle(f) {
   }
 }
 
+function downloadToFile(remote, local) {
+  console.log(`Downloading ${remote} to ${local}`)
+  const file = fs.createWriteStream(local);
+  return http.get(remote, response => response.pipe(file));
+}
+
 function getReleaseJar(versionString) {
   let url = util.format(release_format, versionString);
-  console.log(`Requesting ${url}...`)
-  return https.get(url);
+  return downloadToFile(url, "flix.jar")
 }
 
 function getNightlyJar(dateString) {
   let url = util.format(nightly_format, dateString);
-  console.log(`Requesting ${url}...`)
-  return https.get(url);
+  return downloadToFile(url, "flix.jar")
 }
 
 function getJar() {
