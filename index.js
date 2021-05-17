@@ -18,8 +18,8 @@ function handle(f) {
 
 function downloadToFile(remote, local) {
   console.log(`Downloading ${remote} to ${local}`)
-  const file = fs.createWriteStream(local);
-  return http.get(remote, response => response.pipe(file));
+  let file = fs.createWriteStream(local);
+  return https.get(remote, response => response.pipe(file));
 }
 
 function getReleaseJar(versionString) {
