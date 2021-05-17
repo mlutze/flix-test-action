@@ -2,17 +2,15 @@
 name: 'Flix Test'
 description: 'Perform Flix unit tests and benchmark tests'
 inputs:
-  flix-version:
-    description: 'Version of Flix to use'
+  version-type:
+    description: 'The type of version to use: nightly or release'
     required: true
-  test-dir:
-    description: 'Directory containing Flix test files.'
-    required: true
-    default: './test/'
+    default: release
+  release-tag:
+    description: 'The tag of the release to use: vX.X.X'
+  nightly-date:
+    description: 'The date of the nightly build to use: YYYY-MM-DD'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.flix-version }}
-    - ${{ inputs.test-dir }}
+  using: 'node12'
+  main: 'main.js'
 
