@@ -6118,7 +6118,7 @@ function log_process(ps) {
 }
 
 function runTests() {
-  let test_ps = child_process.spawn('java' ['-jar', 'flix.jar', '--test', '*.flix']);
+  let test_ps = child_process.spawn('java', ['-jar', 'flix.jar', '--test', '*.flix']);
   log_process(test_ps);
 
   
