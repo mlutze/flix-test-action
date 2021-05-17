@@ -38,8 +38,7 @@ bower_components
 build/Release
 
 # Dependency directories
-# have to allow node_modules according to actions
-# node_modules/
+node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -83,7 +82,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# dist # allow dist for ncc
 
 # Gatsby files
 .cache/
