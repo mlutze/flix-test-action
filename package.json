@@ -1,0 +1,22 @@
+{
+  "name": "flix-test-action",
+  "version": "1.0.0",
+  "description": "Github action for running flix tests",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlutze/flix-test-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mlutze/flix-test-action/issues"
+  },
+  "homepage": "https://github.com/mlutze/flix-test-action#readme"
+}
