@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const http = require('http');
+const https = require('https');
 const util = require('util');
 const child_process = require('child_process');
 
