@@ -18,13 +18,13 @@ function handle(f) {
 function getReleaseJar(versionString) {
   let url = util.format(release_format, versionString);
   console.log(`Requesting ${url}...`)
-  return https.request(url);
+  return https.get(url);
 }
 
 function getNightlyJar(dateString) {
   let url = util.format(nightly_format, dateString);
   console.log(`Requesting ${url}...`)
-  return https.request(url);
+  return https.get(url);
 }
 
 function getJar() {
