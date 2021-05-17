@@ -16,28 +16,31 @@ function handle(f) {
   }
 }
 
-function downloadToFile(remote, local) {
+function downloadToFile(remote, local, cb) {
   console.log(`Downloading ${remote} to ${local}`)
   let file = fs.createWriteStream(local);
-  return https.get(remote, response => response.pipe(file));
+  return https.get(remote, response => { 
+    response.pipe(file);
+    file.on('finish', () => file.close(cb));
+  });
 }
 
-function getReleaseJar(versionString) {
+function getReleaseJar(versionString, cb) {
   let url = util.format(release_format, versionString);
-  return downloadToFile(url, "flix.jar")
+  return downloadToFile(url, "flix.jar", cb)
 }
 
-function getNightlyJar(dateString) {
+function getNightlyJar(dateString, cb) {
   let url = util.format(nightly_format, dateString);
-  return downloadToFile(url, "flix.jar")
+  return downloadToFile(url, "flix.jar", cb)
 }
 
-function getJar() {
+function getJar(cb) {
   let version_type = core.getInput('version-type');
   if (version_type === 'nightly') {
-    return getNightlyJar(core.getInput('nightly-date'))
+    return getNightlyJar(core.getInput('nightly-date'), cb)
   } else if (version_type === 'release') {
-    return getReleaseJar(core.getInput('release-tag'))
+    return getReleaseJar(core.getInput('release-tag'), cb)
   } else {
     throw Error("Illegal version type.")
   }
@@ -70,8 +73,7 @@ function runTests() {
 }
 
 function main() {
-  let jar = getJar();
-  jar.on('finish', runTests)
+  getJar(runTests);
 }
 
 handle(main)
