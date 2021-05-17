@@ -1,8 +1,8 @@
 {
   "name": "flix-test-action",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Github action for running flix tests",
-  "main": "main.js",
+  "main": "index.js",
   "dependencies": {
     "@actions/core": "^1.2.7",
     "@actions/github": "^5.0.0"
