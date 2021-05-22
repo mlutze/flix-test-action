@@ -42,3 +42,8 @@ jobs:
         type: 'release'
         release-tag: 'v0.14.5'
 ```
+
+### Before committing:
+```bash
+ncc build
+```
